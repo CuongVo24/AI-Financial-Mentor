@@ -13,3 +13,7 @@ Thumbs.db
 .expo/
 dist/
 web-build/
+
+#Hàm tiện ích để gộp file cho AI kiểm soát code
+merge_code.js
+TOAN_BO_SOURCE_CODE.txt
