@@ -1,5 +1,5 @@
 # Bỏ qua các thư viện nặng (sẽ tự cài lại được)
-node_modules/
+**/node_modules/
 
 # QUAN TRỌNG: Bỏ qua file chứa mật khẩu/API Key
 .env
