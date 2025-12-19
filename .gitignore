@@ -1,19 +1,35 @@
-# Bỏ qua các thư viện nặng (sẽ tự cài lại được)
+# --- Dependencies (Thư viện nặng - Máy khác tự cài lại được) ---
+node_modules/
 **/node_modules/
 
-# QUAN TRỌNG: Bỏ qua file chứa mật khẩu/API Key
+# --- Environment & Secrets (Bảo mật tuyệt đối) ---
 .env
 *.env
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
 
-# Bỏ qua các file rác của hệ thống
+# --- OS & Tooling (File rác hệ thống) ---
 .DS_Store
 Thumbs.db
+.idea/
+.vscode/
+*.log
 
-# Bỏ qua các file build của Expo/Android
+# --- Expo & React Native Build (File build tạm) ---
 .expo/
 dist/
 web-build/
+*.jks
+*.keystore
+*.pem
 
-#Hàm tiện ích để gộp file cho AI kiểm soát code
+# --- Android/iOS Generated (Nếu sau này build native) ---
+# android/
+# ios/
+# (Tạm thời giữ lại folder android/ios nếu bạn eject, nhưng hiện tại Expo Go chưa cần chặn)
+
+# --- Utility Scripts (File gộp code dùng riêng) ---
 merge_code.js
 TOAN_BO_SOURCE_CODE.txt
