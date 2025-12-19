@@ -1,0 +1,13 @@
+{
+  "configs": [
+    {
+      "packageId": "com.mservice.momotransaction",
+      "bankName": "MoMo",
+      "rules": {
+        "anchorText": "Giao dịch thành công",
+        "amountRegex": "([0-9.]+)đ",
+        "findStrategy": "BELOW_ANCHOR"
+      }
+    }
+  ]
+}

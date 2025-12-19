@@ -1,70 +1,33 @@
-TỔNG QUAN KIẾN TRÚC HỆ THỐNG
-Mô hình điều phối: The Relay Loop (Chạy tiếp sức).
-
-Trình điều khiển: Bạn (Controller) điều khiển Script tự động hoặc Copy-Paste thủ công.
+TỔNG QUAN KIẾN TRÚC HỆ THỐNG (UPDATED)
+Mô hình: "Money Locket" - Social Financial Network.
 
 Công nghệ lõi (Tech Stack):
+* Frontend: React Native (Expo) + **Kotlin Native Modules** (Xử lý Accessibility/SMS).
+* Backend: Node.js (Fastify/TypeScript).
+* AI Engine: Gemini 1.5 Flash (Phân tích ngữ nghĩa & Social Context).
+* Database: Supabase (PostgreSQL + Real-time).
 
-Frontend: React Native (Expo) - Code một lần chạy cả Android & iOS.
-
-Backend: Node.js (Fastify/TypeScript) - Đảm bảo tốc độ và bảo mật API Key.
-
-Database: Supabase (PostgreSQL) - Lưu trữ Cloud an toàn, hỗ trợ Real-time cho tính năng nhóm.
-
-AI Engine: Gemini 1.5 Flash (Google AI Studio) - Xử lý ngôn ngữ tự nhiên, phân loại chi tiêu.
-
-IDE: Antigravity - Môi trường code và test tập trung.
 ROADMAP CHI TIẾT (10 TIẾNG/NGÀY)
-GIAI ĐOẠN 1: THIẾT LẬP NỀN MÓNG (Tuần 1)
-Mục tiêu: Có khung dự án, Database và giao diện Chatbot cơ bản.
 
-Ngày 1-2 (Database & Repo):
+GIAI ĐOẠN 1: THIẾT LẬP NỀN MÓNG (Tuần 1) - ✅ ĐÃ HOÀN THÀNH
+* Mục tiêu: Backend Online, Database Schema chuẩn, Repo sẵn sàng.
+* Kết quả: Server Fastify chạy port 3000, kết nối Gemini & Supabase thành công.
 
-Thiết lập GitHub Repo (với file .gitignore để ẩn file .env).
+GIAI ĐOẠN 2: "THE 5-LAYER DEFENSE" - NATIVE MOBILE (Tuần 2-3)
+* Mục tiêu: App Android có thể "đọc" được mọi ngóc ngách điện thoại (Accessibility, SMS, Noti).
+* Module Native (Khó): Viết Bridge từ React Native sang Kotlin để chạy Accessibility Service.
+* Module Screenshot: Tính năng tự động upload và xóa ảnh.
+* Integration: Kết nối App với Backend API `/analyze`.
+* *Milestone:* Cài file APK, App tự động nhận diện khi mở MoMo/Bank.
 
-Dùng Tab DA thiết kế SQL Schema hoàn chỉnh.
+GIAI ĐOẠN 3: "THE BRAIN" & LOGIC XÃ HỘI (Tuần 4)
+* Mục tiêu: Xử lý dữ liệu thô thành bài đăng mạng xã hội.
+* AI Tuning: Dạy Gemini phân biệt Income (Private) và Outcome (Public).
+* Feed UI: Xây dựng giao diện lướt Feed, xem tin bạn bè.
+* Privacy Logic: Ẩn số tiền (Masked Mode) theo cài đặt người dùng.
 
-Tạo Project trên Supabase và chạy Script SQL để tạo bảng.
-
-Ngày 3-5 (Backend Skeleton):
-
-Dùng Tab BE dựng server Fastify.
-
-Thiết lập Proxy API Gemini (Ẩn API Key trên Backend).
-
-Viết API kết nối với Database Supabase.
-
-Ngày 6-7 (Frontend Interface):
-
-Dùng Tab FE dựng App React Native với Expo.
-
-Thiết kế giao diện Dashboard (Mood AI) và Chatbox UI.
-
-GIAI ĐOẠN 2: THỰC THI TÍNH NĂNG "LẮNG NGHE" (Tuần 2-4)
-Mục tiêu: App tự động bắt được thông báo MoMo và AI phân tích được dữ liệu.
-
-Module Notification (Android): Viết Listener để bắt nội dung từ MoMo.
-
-Module AI Parser: Gửi nội dung thông báo sang Gemini để bóc tách: Số tiền, Nội dung, Loại chi tiêu.
-
-Module Instant Chat: Khi có giao dịch, hiện thông báo cho người dùng chọn nhanh mục đích chi tiêu.
-
-Milestone: Cài file APK đầu tiên lên điện thoại của bạn để test giao dịch MoMo thật.
-
-GIAI ĐOẠN 3: CỘNG ĐỒNG & CHIA TIỀN (Tuần 5-8)
-Mục tiêu: Kết nối bạn bè, chia tiền và báo cáo giọng nói.
-
-Social Features: Đăng ký/Đăng nhập bạn bè qua số điện thoại.
-
-One-Click Split: Tự động tính toán tiền nợ và tạo Link thanh toán MoMo/VietQR.
-
-Voice Insight: Cuối tuần AI tổng hợp dữ liệu và đọc báo cáo tài chính bằng giọng nói (TTS).
-
-Security Audit: Kiểm tra lại các lớp mã hóa dữ liệu trước khi mời bạn bè dùng thử bản Beta.QUY TẮC GIÁM SÁT (Dành cho Bạn)
-Quy tắc Handover: Khi chuyển giao giữa các Tab (DA -> BE -> FE), phải yêu cầu AI tóm tắt thông tin vào khối mã [HANDOVER_PACKET].
-
-Bảo mật: Luôn kiểm tra xem file .env đã có trong .gitignore chưa trước khi push lên GitHub.
-
-Clean Code: Yêu cầu các AI comment code rõ ràng theo chuẩn Coding Convention mà chúng ta đã thống nhất (PascalCase cho Table, camelCase cho Function).
-
-Kiểm soát 0đ: Chỉ sử dụng các gói Free Tier của Google, Supabase, Vercel. Không nhập thẻ tín dụng nếu không cần thiết.
+GIAI ĐOẠN 4: GHOST SPLITTING & POLISH (Tuần 5-6)
+* Mục tiêu: Tính năng chia tiền và hoàn thiện UX.
+* Ghost Splitting: Tạo QR động, tích hợp Share Sheet của điện thoại.
+* Data Visualization: Vẽ biểu đồ Pie Chart cho Period Recap.
+* Security Audit: Kiểm tra việc xóa ảnh chụp màn hình và che OTP.

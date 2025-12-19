@@ -21,7 +21,8 @@ export class GeminiService {
       3. category: Infer a standard category (e.g., Food, Transport, Utilities, Shopping, Transfer, Salary).
       4. note: A brief description of the transaction based on the content.
       5. party: The merchant name or person involved.
-      6. confidence: A number between 0 and 1 indicating how confident you are in the parsing.
+      6. isGroupPotential: Boolean. Return TRUE if the text implies a group activity (e.g., keywords like "Lẩu", "Buffet", "Karaoke", "Team", "Share", "Campuchia", "n người") OR if the amount is significant for a meal (> 200,000 VND). Otherwise FALSE.
+      7. confidence: A number between 0 and 1 indicating how confident you are in the parsing.
     `;
 
     try {
@@ -39,6 +40,7 @@ export class GeminiService {
               note: { type: Type.STRING },
               party: { type: Type.STRING },
               confidence: { type: Type.NUMBER }
+              isGroupPotential: { type: Type.BOOLEAN, description: "True if looks like a group expense" }
             },
             required: ["amount", "type", "category", "note", "party", "confidence"]
           }

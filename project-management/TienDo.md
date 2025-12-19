@@ -1,17 +1,11 @@
-Chặng	        Thời gian	            Kết quả đạt được
-Chặng 1	        Ngày 1 - 2	
+# THEO DÕI TIẾN ĐỘ DỰ ÁN MONEY LOCKET
 
-                                        Xong bộ khung: Database hoạt động, AI bắt đầu "hiểu" tiếng Việt và phân loại tiền. 
+| Chặng           | Thời gian         | Trạng thái        | Kết quả   /   Mục tiêu |
+|            :--- |             :---  |              :--- |          :--- |
+| **Chặng 1**     | Ngày 1 - 2        | ✅ **DONE**      | **Foundation:**<br>- Database Supabase (Schema chuẩn Social).<br>- Backend Fastify (API Key Proxy an toàn).<br>- Kết nối Gemini AI thành công. |
 
+| **Chặng 2**     | Ngày 3 - 7        | 🚧 **DOING**     | **The Spy (Native Modules):**<br>- Dựng App React Native (Expo Prebuild).<br>- Viết Module Kotlin để chạy Accessibility Service (L1).<br>- Bắt thông báo (L2) và đọc SMS (L3). |
 
-Chặng 2	        Ngày 3 - 5	
+| **Chặng 3**     | Ngày 8 - 14       | ⏳ Pending       | **The Social Feed:**<br>- Logic phân loại Income/Outcome (Private/Public).<br>- UI lướt Feed giống Locket.<br>- Tích hợp AI phân tích ngữ cảnh. |
 
-                                        Xong diện mạo: App chạy trên điện thoại, có màn hình đăng nhập và nút bấm phân tích. 
-
-Chặng 3     	Ngày 6 - 10	
-
-                                        Xong tính năng lõi: App tự động đọc thông báo MoMo, lưu lịch sử chi tiêu vào DB. 
-
-Chặng 4	        Ngày 11 - 16	
-
-                                        Xong tính năng thông minh: Chia tiền nhóm, biểu đồ báo cáo và chat với trợ lý tài chính.
+| **Chặng 4**     | Ngày 15 - 20      | ⏳ Pending       | **Viral Features:**<br>- Ghost Splitting (Chia tiền qua Bluetooth/QR).<br>- Báo cáo tổng kết tuần (Recap).<br>- Beta Test thực tế. |
