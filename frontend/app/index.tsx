@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, FlatList, Image, TouchableOpacity } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { Heart, MessageCircle, Split, MoreHorizontal, Lock } from 'lucide-react-native';
-import { Transaction, TransactionType, PrivacyLevel } from '../../src/types';
+import { Transaction, TransactionType, PrivacyLevel } from '../src/types';
 
 // Mock Data matches the Backend Contract
 const mockTransactions: Transaction[] = [
@@ -71,22 +71,22 @@ const SocialCard = ({ item }: { item: Transaction }) => {
           </Text>
         </View>
         <TouchableOpacity className="p-2">
-           <MoreHorizontal color="#D1D5DB" size={20} />
+          <MoreHorizontal color="#D1D5DB" size={20} />
         </TouchableOpacity>
       </View>
 
       {/* Main Content: Amount & Note */}
       <View className="bg-gray-50 p-4 rounded-2xl mb-4">
         {isMasked ? (
-           <View className="flex-row items-center">
-             <Text className="text-gray-400 font-bold text-2xl italic">🙈 Secret</Text>
-           </View>
+          <View className="flex-row items-center">
+            <Text className="text-gray-400 font-bold text-2xl italic">🙈 Secret</Text>
+          </View>
         ) : (
-           <Text className="text-[#D82D8B] font-black text-3xl">
-             -{formattedAmount}
-           </Text>
+          <Text className="text-[#D82D8B] font-black text-3xl">
+            -{formattedAmount}
+          </Text>
         )}
-        
+
         <Text className="text-gray-700 mt-2 font-medium text-base leading-5">
           {item.note || item.category}
         </Text>
@@ -124,10 +124,10 @@ export default function FeedScreen() {
           Money<Text className="text-[#D82D8B]">Locket</Text>
         </Text>
         <View className="w-8 h-8 bg-gray-100 rounded-full items-center justify-center">
-             <Lock size={14} color="#374151" />
+          <Lock size={14} color="#374151" />
         </View>
       </View>
-      
+
       <FlatList
         data={mockTransactions}
         keyExtractor={(item) => item.id || Math.random().toString()}
