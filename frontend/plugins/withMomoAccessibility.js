@@ -1,18 +1,16 @@
-const { withAndroidManifest, withDangerousMod, AndroidConfig } = require('@expo/config-plugins');
+const { withAndroidManifest, withDangerousMod, withMod, AndroidConfig } = require('@expo/config-plugins');
 const fs = require('fs');
 const path = require('path');
 
-const SERVICE_NAME = '.MomoAccessibilityService'; // Relative to package
-const FULL_SERVICE_CLASS = 'com.anonymous.frontend.momo.MomoAccessibilityService';
+const SERVICE_NAME = '.MomoAccessibilityService';
 
 const withMomoAccessibilityService = (config) => {
 
-    // 1. Add Service to AndroidManifest.xml
+    // 1. Add Service to AndroidManifest.xml (Giữ nguyên)
     config = withAndroidManifest(config, async (config) => {
         const androidManifest = config.modResults;
         const mainApplication = AndroidConfig.Manifest.getMainApplicationOrThrow(androidManifest);
 
-        // Check if service already exists
         const serviceExists = mainApplication.service?.some(
             (service) => service.$['android:name'] === SERVICE_NAME
         );
@@ -42,11 +40,10 @@ const withMomoAccessibilityService = (config) => {
                 ],
             });
         }
-
         return config;
     });
 
-    // 2. Create accessibility_service_config.xml
+    // 2. Create accessibility_service_config.xml (Giữ nguyên)
     config = withDangerousMod(config, [
         'android',
         async (config) => {
@@ -54,14 +51,9 @@ const withMomoAccessibilityService = (config) => {
                 config.modRequest.platformProjectRoot,
                 'app/src/main/res/xml'
             );
-
-            // Ensure directory exists
             if (!fs.existsSync(resDir)) {
                 fs.mkdirSync(resDir, { recursive: true });
             }
-
-            // The configuration content
-            // Explicitly setting packageNames limits it to MoMo for performance
             const accessibilityConfig = `<?xml version="1.0" encoding="utf-8"?>
 <accessibility-service xmlns:android="http://schemas.android.com/apk/res/android"
     android:description="@string/accessibility_service_description"
@@ -72,28 +64,30 @@ const withMomoAccessibilityService = (config) => {
     android:notificationTimeout="100"
     android:canRetrieveWindowContent="true"
 />`;
-
             fs.writeFileSync(
                 path.join(resDir, 'accessibility_service_config.xml'),
                 accessibilityConfig
             );
-
             return config;
         },
     ]);
 
-    // 3. Add string description for the service
-    config = AndroidConfig.Strings.withStrings(config, (config) => {
-        config.modResults = AndroidConfig.Strings.setStringItem(
-            [
-                {
-                    $: { name: 'accessibility_service_description' },
-                    _: 'Money Locket Transaction Scanner (Layer 1)',
-                },
-            ],
-            config.modResults
-        );
-        return config;
+    // 3. FIX: Dùng withMod trực tiếp để inject String Resource
+    config = withMod(config, {
+        platform: 'android',
+        mod: 'strings',
+        action: (config) => {
+            config.modResults = AndroidConfig.Strings.setStringItem(
+                [
+                    {
+                        $: { name: 'accessibility_service_description' },
+                        _: 'Money Locket Transaction Scanner (Layer 1)',
+                    },
+                ],
+                config.modResults
+            );
+            return config;
+        },
     });
 
     return config;
